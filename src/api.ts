@@ -93,7 +93,6 @@ export async function fetchAccountQuota(account: Account): Promise<AccountQuotaR
       const lowerLabel = label.toLowerCase();
       if (lowerLabel.startsWith("chat_") || 
           lowerLabel.startsWith("rev19") || 
-          lowerLabel.includes("gemini 2.5") || 
           lowerLabel.includes("gemini 3 pro image")) {
         continue;
       }

@@ -123,6 +123,14 @@ describe("API", () => {
                                 resetTime: new Date(Date.now() + 3600000).toISOString()
                             }
                         },
+                        "gemini-3.8-flash": {
+                          displayName: "Gemini 3.8 Flash",
+                          quotaInfo: { remainingFraction: 0.7 }
+                        },
+                        "gemini-3.6-flash": {
+                          displayName: "Gemini 3.6 Flash",
+                          quotaInfo: { remainingFraction: 0.6 }
+                        },
                         "chat_model": { // Should be filtered out
                             displayName: "chat_model",
                             quotaInfo: { remainingFraction: 1 }
@@ -141,9 +149,13 @@ describe("API", () => {
 
         expect(result.success).toBe(true);
         expect(result.email).toBe("test@example.com");
-        expect(result.models).toHaveLength(1);
-        expect(result.models![0].label).toBe("Gemini 1.5 Pro");
-        expect(result.models![0].remainingPercentage).toBe(80);
+        expect(result.models).toHaveLength(3);
+        expect(result.models!.map((model) => model.label)).toEqual([
+          "Gemini 1.5 Pro",
+          "Gemini 3.6 Flash",
+          "Gemini 3.8 Flash",
+        ]);
+        expect(result.models!.find((model) => model.label === "Gemini 3.8 Flash")?.remainingPercentage).toBe(70);
     });
 
     it("should handle error during flow", async () => {
