@@ -28,11 +28,19 @@ Add the plugin to your `opencode.json`, along with the `opencode-antigravity-aut
 ```json
 "plugin": [
     "opencode-antigravity-auth@1.2.8",
-    "opencode-antigravity-quota@0.1.7"
+  "opencode-antigravity-quota@0.1.8"
 ],
 ```
 
 Note that token management and authentication are handled by the `opencode-antigravity-auth` plugin.
+
+After restarting OpenCode, run the command below in the OpenCode chat:
+
+```text
+/antigravity-quota
+```
+
+The plugin fetches the currently available models from Google automatically, so newer Gemini Flash models do not require another plugin update. Models must also be available for the authenticated Antigravity account.
 
 ## Usage
 
@@ -43,7 +51,7 @@ Call the `/antigravity-quota` tool or ask your LLM to show the Antigravity quota
 ```markdown
 # ☁️ Quota Status
 
-### Gemini 1.5 Pro / Gemini 2.0 Flash
+### Gemini 3.8 Flash / Gemini 3.6 Flash
 QUOTA               RESET IN    ACCOUNT
 [██████████] 100%   23h 59m     user1
 [█████░░░░░] 50%    12h 30m     user2
